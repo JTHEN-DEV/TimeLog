@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Dashboard from "./components/Dashboard";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./components/Login";
+import { AuthProvider } from "./contexts/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
+import TimeTracker from "./components/TimeTracker";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <div>Home Page TBC</div>,
+    },
+    {
+        path: "/user/:userId",
+        element: <div>User Details</div>,
+    },
+    {
+        path: "/app",
+        element: <PrivateRoute component={TimeTracker} from="/app" />,
+    },
+    {
+        path: "/dashboard",
+        element: <PrivateRoute component={Dashboard} from="/dashboard" />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
+    );
 }
 
 export default App;
