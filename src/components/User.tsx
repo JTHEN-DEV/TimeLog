@@ -8,7 +8,7 @@ const User = (props: Props) => {
 
     return (
         <div>
-            <h1>User: {userId ? userId : "Undefined..."}</h1>
+            <h1>User {userId ? userId : "Undefined..."}</h1>
             <div>This is the user stats page</div>
         </div>
     );

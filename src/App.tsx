@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import TimeTracker from "./components/TimeTracker";
+import User from "./components/User";
 
 const router = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/user/:userId",
-        element: <div>User Details</div>,
+        element: <PrivateRoute component={User} from="/user" />,
     },
     {
         path: "/app",
