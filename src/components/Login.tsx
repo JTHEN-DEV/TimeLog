@@ -43,7 +43,7 @@ const Login = (props: Props) => {
 
     const handleSignupClick = async () => {
         try {
-            await signup(username, password);
+            await signup(username, password, firstName, lastName);
             navigate("/verification");
         } catch (error) {
             if (error instanceof AuthError) {

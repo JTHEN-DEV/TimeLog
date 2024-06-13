@@ -10,6 +10,7 @@ import TimeTracker from "./components/TimeTracker";
 import User from "./components/User";
 import { DataProvider } from "./contexts/DataContext";
 import EmailConfirmation from "./components/EmailConfirmation";
+import Room from "./components/Room";
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     {
         path: "/verification",
         element: <EmailConfirmation />,
+    },
+    {
+        path: "/room/:roomId",
+        element: <Room />,
     },
 ]);
 

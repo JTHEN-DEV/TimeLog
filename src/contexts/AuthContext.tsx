@@ -30,10 +30,21 @@ const AuthProvider: React.FC<AuthProviderPropsType> = ({ children }) => {
         return data.subscription.unsubscribe();
     }, []);
 
-    const signup = async (username: string, password: string) => {
+    const signup = async (
+        username: string,
+        password: string,
+        firstName: string,
+        lastName: string
+    ) => {
         const { data, error } = await supabase.auth.signUp({
             email: username,
             password: password,
+            options: {
+                data: {
+                    first_name: firstName,
+                    last_name: lastName,
+                },
+            },
         });
         if (error) {
             throw error;
