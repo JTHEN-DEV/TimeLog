@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBkZwTrg2R6wb-EZFov41E325HyxP4nK4I",
@@ -25,4 +26,6 @@ const signInWithGoogle = async () => {
     }
 };
 
-export { auth, signInWithGoogle };
+const database = getDatabase(app);
+
+export { auth, signInWithGoogle, database };

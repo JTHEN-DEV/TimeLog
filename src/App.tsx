@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import TimeTracker from "./components/TimeTracker";
 import User from "./components/User";
+import { DataProvider } from "./contexts/DataContext";
 
 const router = createBrowserRouter([
     {
@@ -35,7 +36,9 @@ const router = createBrowserRouter([
 function App() {
     return (
         <AuthProvider>
-            <RouterProvider router={router} />
+            <DataProvider>
+                <RouterProvider router={router} />
+            </DataProvider>
         </AuthProvider>
     );
 }
