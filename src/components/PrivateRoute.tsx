@@ -9,8 +9,8 @@ type Props = {
 };
 
 const PrivateRoute = (props: Props) => {
-    const { currentUser, isLoading } = useContext<AuthContextType>(AuthContext);
-    return currentUser ? (
+    const { user, isLoading } = useContext<AuthContextType>(AuthContext);
+    return user ? (
         <props.component />
     ) : (
         <Navigate to="/login" replace state={{ from: props.from }} />

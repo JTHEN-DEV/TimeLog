@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import TimeTracker from "./components/TimeTracker";
 import User from "./components/User";
 import { DataProvider } from "./contexts/DataContext";
+import EmailConfirmation from "./components/EmailConfirmation";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+    },
+    {
+        path: "/verification",
+        element: <EmailConfirmation />,
     },
 ]);
 

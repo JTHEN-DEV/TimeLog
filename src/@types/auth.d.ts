@@ -1,7 +1,10 @@
+import { User } from "@supabase/supabase-js";
+
 export type AuthContextType = {
-    currentUser: null | User;
+    user: null | User;
     isLoading: boolean;
-    login: () => Promise<void>;
+    signup: (username: string, password: string) => Promise<void>;
+    login: (username: string, password: string) => Promise<void>;
     logout: () => Promise<void>;
 };
 
