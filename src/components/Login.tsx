@@ -24,7 +24,7 @@ const Login = (props: Props) => {
         if (user) {
             navigate("/dashboard");
         }
-    }, []);
+    }, [user]);
 
     const handleLoginClick = async () => {
         try {

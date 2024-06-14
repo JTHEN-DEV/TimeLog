@@ -26,8 +26,6 @@ const AuthProvider: React.FC<AuthProviderPropsType> = ({ children }) => {
                 setUser(session?.user ?? null);
             }
         );
-
-        return data.subscription.unsubscribe();
     }, []);
 
     const signup = async (
