@@ -1,5 +1,3 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -10,7 +8,6 @@ import TimeTracker from "./components/TimeTracker";
 import User from "./components/User";
 import { DataProvider } from "./contexts/DataContext";
 import EmailConfirmation from "./components/EmailConfirmation";
-import Room from "./components/Room";
 import RoomGateway from "./components/RoomGateway";
 
 const router = createBrowserRouter([
@@ -40,7 +37,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/room/:roomId",
-        element: <PrivateRoute component={RoomGateway} from="/room" />,
+        element: <PrivateRoute component={RoomGateway} from="/room/:roomId" />,
     },
 ]);
 

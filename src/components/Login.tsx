@@ -81,11 +81,13 @@ const Login = (props: Props) => {
 
             {!isLogin && (
                 <div>
+                    <div>First Name:</div>
                     <input
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                     />
+                    <div>Last Name:</div>
                     <input
                         type="text"
                         value={lastName}
