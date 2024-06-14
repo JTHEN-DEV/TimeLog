@@ -11,6 +11,7 @@ import User from "./components/User";
 import { DataProvider } from "./contexts/DataContext";
 import EmailConfirmation from "./components/EmailConfirmation";
 import Room from "./components/Room";
+import RoomGateway from "./components/RoomGateway";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/room/:roomId",
-        element: <Room />,
+        element: <PrivateRoute component={RoomGateway} from="/room" />,
     },
 ]);
 

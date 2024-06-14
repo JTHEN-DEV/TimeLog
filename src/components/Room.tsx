@@ -5,7 +5,9 @@ import { RealtimeChannel } from "@supabase/supabase-js";
 import { DataContext } from "../contexts/DataContext";
 import { AuthContext } from "../contexts/AuthContext";
 
-type Props = {};
+type Props = {
+    roomId: string;
+};
 
 interface PresenceState {
     user: string;
@@ -13,14 +15,19 @@ interface PresenceState {
 }
 
 const Room = (props: Props) => {
-    const { roomId } = useParams();
-
     const { user } = useContext(AuthContext);
 
     const [members, setMembers] = useState<string[]>([]);
 
+    const [loadingState, setLoadingState] = useState<
+        "loading" | "access" | "no-access"
+    >("loading");
+
+    const userId = user!.id;
+
     useEffect(() => {
-        const newRoom = supabase.channel(roomId || "global");
+        // Connect to room
+        const newRoom = supabase.channel(props.roomId || "global");
         newRoom
             .on("presence", { event: "sync" }, () => {
                 const newState = newRoom.presenceState<PresenceState>();
@@ -28,9 +35,6 @@ const Room = (props: Props) => {
                 setMembers(
                     Object.keys(newState).map((id) => newState[id][0].user)
                 );
-                // console.log(
-                //     Object.keys(newState).map((id) => newState[id][0].user)
-                // );
             })
             .on("presence", { event: "join" }, ({ key, newPresences }) => {
                 console.log("join", key, newPresences);
@@ -43,7 +47,7 @@ const Room = (props: Props) => {
                     return;
                 }
                 const userStatus = {
-                    user: user?.id,
+                    user: userId,
                     online_at: new Date().toISOString(),
                 };
 
@@ -58,7 +62,7 @@ const Room = (props: Props) => {
 
     return (
         <div>
-            <h1>Room {roomId}</h1>
+            <h1>Room {props.roomId}</h1>
             <div>
                 This is a room in which multiple people can log time together
             </div>
